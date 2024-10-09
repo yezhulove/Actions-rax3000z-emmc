@@ -76,6 +76,11 @@ jobs:
         git clone $REPO_URL openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
 
+    - name: Load custom feeds
+      run: |
+        cd ./openwrt
+        echo 'src-git smpackage https://github.com/kenzok8/small-package' >> feeds.conf.default
+
     - name: 开启缓存
       uses: klever1988/cachewrtbuild@main
       with:
